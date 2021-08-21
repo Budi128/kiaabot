@@ -30,25 +30,30 @@ let tags = {
 }
 const defaultMenu = {
   before: `
-┌─〔 %me 〕
-├ Hai, %name!
-│
-├ Tersisa *%limit Limit*
-├ Role *%role*
-├ Level *%level (%exp / %maxexp)* [%xp4levelup lagi untuk levelup]
+┌─〔 *%me* 〕
+├ Hai,%name!
+├ Level : *%level*
+├ Limit: *%limit*
+├ Rank: *%role*
 ├ %totalexp XP in Total
-│ 
+└─
+┌─〔 *WAKTU* 〕
 ├ Tanggal: *%week %weton, %date*
 ├ Tanggal Islam: *%dateIslamic*
 ├ Waktu: *%time*
+└───
+┌─〔 *STATUS* 〕
 │
-├  Uptime: *%uptime (%muptime)*
-├  Database: %rtotalreg of %totalreg
-└────
+├ Uptime: *%uptime (%muptime)*
+├ *${conn.blocklist.length}* Kontak Terblokir
+├ *${Object.keys(global.db.data.users).length}* Pengguna
+├ Baterai *${conn.battery != undefined ? `${conn.battery.value}%* ${conn.battery.live ? '🔌 pengisian' : ''}` : 'tidak diketahui'}
+├ *${Object.entries(global.db.data.users).filter(user => user[1].banned).length}* Pengguna Terbanned
+└───
 %readmore`.trimStart(),
   header: '┌─「 %category 」',
   body: '├  %cmd %islimit %isPremium',
-  footer: '└─\n',
+  footer: '└────\n',
   after: `
 *%npmname@^%version*
 ${'```%npmdesc```'}
@@ -182,3 +187,4 @@ function clockString(ms) {
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
 }
+ 
