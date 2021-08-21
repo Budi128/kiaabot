@@ -11,5 +11,5 @@ let handler = async(m, { conn }) => {
 handler.help = ['neko']
 handler.tags = ['wibu']
 handler.command = /^neko$/i
-
+handler.limit = 1
 module.exports = handler
