@@ -1,10 +1,11 @@
-const free = 500
-const prem = 5000
+const free = 10
+const prem = 100
+let point = 3
 let handler = async (m, { isPrems }) => {
-  let time = global.db.data.users[m.sender].lastclaim + 86400000
-  if (new Date - global.db.data.users[m.sender].lastclaim < 86400000) throw `Anda sudah mengklaim klaim harian hari ini\ntunggu selama ${msToTime(time - new Date())} lagi`
-  global.db.data.users[m.sender].exp += isPrems ? prem : free
-  m.reply(`+${isPrems ? prem : free} XP`)
+  let time = global.db.data.users[m.sender].lastclaim + 43200000
+  if (new Date - global.db.data.users[m.sender].lastclaim < 43200000) throw `Anda sudah mengklaim klaim harian hari ini\ntunggu selama ${msToTime(time - new Date())} lagi`
+  global.db.data.users[m.sender].limit += isPrems ? prem : free
+  m.reply(`+${isPrems ? prem : free} Limit`)
   global.db.data.users[m.sender].lastclaim = new Date * 1
 }
 handler.help = ['daily', 'claim']
