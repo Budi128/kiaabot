@@ -1,5 +1,6 @@
 let fs = require('fs')
 let path = require('path')
+let fetch = require('node-fetch')
 let levelling = require('../lib/levelling')
 let tags = {
   'main': 'Main',
@@ -35,7 +36,7 @@ const defaultMenu = {
 ├ Level : *%level*
 ├ Limit: *%limit*
 ├ Rank: *%role*
-├ %totalexp XP in Total
+├ Exp: *%totalexp*
 └─
 ┌─〔 *WAKTU* 〕
 ├ Tanggal: *%week %weton, %date*
@@ -47,7 +48,6 @@ const defaultMenu = {
 ├ Uptime: *%uptime (%muptime)*
 ├ *${conn.blocklist.length}* Kontak Terblokir
 ├ *${Object.keys(global.db.data.users).length}* Pengguna
-├ Baterai *${conn.battery != undefined ? `${conn.battery.value}%* ${conn.battery.live ? '🔌 pengisian' : ''}` : 'tidak diketahui'}
 ├ *${Object.entries(global.db.data.users).filter(user => user[1].banned).length}* Pengguna Terbanned
 └───
 %readmore`.trimStart(),
@@ -55,7 +55,7 @@ const defaultMenu = {
   body: '├  %cmd %islimit %isPremium',
   footer: '└────\n',
   after: `
-*%npmname@^%version*
+*%npmname@Versi:3.20*
 ${'```%npmdesc```'}
 `,
 }
@@ -155,15 +155,15 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    conn.reply(m.chat, text.trim(), m)
+    await conn.sendButtonLoc(m.chat, await (await fetch('https://telegra.ph/file/bfd83f8bd17eb09c24987.jpg')).buffer(), text.trim(), 'Recode From Bogor🇮🇩','Donasi', '.donasi', m)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
   }
 }
-handler.help = ['menu', 'help', '?']
+handler.help = ['menu', '?']
 handler.tags = ['main']
-handler.command = /^(menu|help|\?)$/i
+handler.command =  /^(menu|\?)$/i
 handler.owner = false
 handler.mods = false
 handler.premium = false
@@ -187,4 +187,4 @@ function clockString(ms) {
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
 }
- 
+
