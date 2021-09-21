@@ -27,15 +27,16 @@ handler.before = function (m) {
           : ((user.level >= 100) && (user.level <= 140)) ? '✷✷'
           : ((user.level >= 140) && (user.level <= 180)) ? '✷✷✷'
           : ((user.level >= 180) && (user.level <= 220)) ? '✷✷✷✷'
-          : ((user.level >= 220) && (user.level <= 250)) ? '✷✷✷✷✷'
-          : ((user.level >= 250) && (user.level <= 350)) ? '✰'
-          : ((user.level >= 350) && (user.level <= 450)) ? '✩✩'
-          : ((user.level >= 450) && (user.level <= 550)) ? '✬✯✬'
-          : ((user.level >= 550) && (user.level <= 650)) ? '✬✬✬✬'
-          : ((user.level >= 650) && (user.level <= 1000)) ? '★★★★★'
+          : ((user.level >= 220) && (user.level <= 500)) ? '✷✷✷✷✷'
+          : ((user.level >= 500) && (user.level <= 1000)) ? '✰'
+          : ((user.level >= 1000) && (user.level <= 1500)) ? '✩✩'
+          : ((user.level >= 1500) && (user.level <= 2000)) ? '✬✯✬'
+          : ((user.level >= 2000) && (user.level <= 2500)) ? '✬✬✬✬'
+          : ((user.level >= 2500) && (user.level <= 3000)) ? '★★★★★'
           : '✯✯✯准将✯✯✯'
   user.role = role
   return true
 }
 
 module.exports = handler
+
