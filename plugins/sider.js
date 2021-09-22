@@ -29,7 +29,7 @@ let handler = async (m, { conn, text, participants }) => {
 	conn.reply(m.chat, `*${total}/${sum}* anggota grup *${conn.getName(m.chat)}* adalah sider dengan alasan :\n1. Tidak aktif selama lebih dari 10 hari\n2. Baru join tetapi tidak pernah nimbrung\n\n_“${pesan}”_\n\n*LIST SIDER :*\n${sider.map(v => '  ○ @' + v.replace(/@.+/, '')).join('\n')}`, m,{ contextInfo: { mentionedJid: sider } })
 }
 handler.help = ['sider']
-handler.tags = ['admin']
+handler.tags = ['group', 'group admin']
 handler.command = /^(sider)$/i
 handler.owner = false
 handler.mods = false
