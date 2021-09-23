@@ -1,10 +1,10 @@
 let handler = async (m, { conn }) => {
-    conn.tebakkata = conn.tebakkata ? conn.tebakkata : {}
+    conn.tebaktebakan = conn.tebaktebakan ? conn.tebaktebakan : {}
     let id = m.chat
-    if (!(id in conn.tebakkata)) throw false
-    let json = conn.tebakkata[id][1]
+    if (!(id in conn.tebaktebakan)) throw false
+    let json = conn.tebaktebakan[id][1]
     let ans = json.result.jawaban.trim()
-    let clue = ans.replace(/[AIUEOaiueoBDSMbdsm]/g, '_')
+    let clue = ans.replace(/[AIUEO]/g, '_')
     m.reply('```' + clue + '```')
 }
 handler.command = /^tebak$/i
